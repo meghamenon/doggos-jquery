@@ -1,3 +1,5 @@
+console.log("Hi");
+
 $(document).ready(function() {
     var allTheDoggos = [
         {
@@ -44,17 +46,120 @@ $(document).ready(function() {
         }
     ];
 
-    var allPuppies = []; // filter allTheDoggos for just the puppies (< 2 years)
+    var californiaDoggos = [];
 
-    var doggosWithPNames = []; // fillter allTheDoggos for those whose names start with P 
+    californiaDoggos = allTheDoggos.filter(function(dogs){
 
-    var doggosInSf = []; // etc
+        if (dogs.state == 'CA'){
 
-    var seniorDoggos = []; // etc
+            return true;
+        }
 
-    var californiaDoggos = []; // etc
+     })
 
-    // 1. Figure out where each array of doggos should be displayed in the index.html
+    californiaDoggos.forEach(function(puppies){
+        var imageURL = puppies.photo;
+
+        var puppyName = puppies.name;
+
+        var image = `<img src = "${imageURL}" />`
+
+        $('#ca').append(image, puppyName);
+    })
+
+
+     var seniorDoggos = [];
+
+     seniorDoggos = allTheDoggos.filter(function(dogs){
+
+        if (dogs.age > 7){
+
+            return true;
+        }
+
+     })
+
+     seniorDoggos.forEach(function(puppies){
+
+        var imageURL = puppies.photo;
+
+        var puppyName = `<h1> ${puppies.name}</h1> `
+
+        var image = `<img src = "${imageURL}" />`
+
+        $('#senior').append(puppyName);
+        $('#senior').append(image);
+
+     })
+
+
+
+    var doggosInSf = []; 
+
+    doggosInSf = allTheDoggos.filter(function(dogs){
+        if(dogs.city == 'SF'){
+            return true;
+        }
+    })
+
+
+    doggosInSf.forEach(function(puppies){
+
+        var imageURL = puppies.photo;
+
+        var puppyName = `<h1> ${puppies.name}</h1> `
+
+        var image = `<img src = "${imageURL}" />`
+
+        $('#sf').append(image);
+        $('#sf').append(puppyName);
+
+    })
+
+    var allPuppies = [];
+
+    allPuppies = allTheDoggos.filter(function(dogs){
+        if(dogs.age < 2){
+            return true;
+        }
+    })
+
+    allPuppies.forEach(function(puppies){
+
+        var imageURL = puppies.photo;
+
+        var puppyName = `<h1> ${puppies.name}</h1> `
+
+        var image = `<img src = "${imageURL}" />`
+
+        $('#puppies').append(image)
+         $('#puppies').append(puppyName)
+    })
+
+    var doggosWithPNames = []; 
+
+    doggosWithPNames = allTheDoggos.filter(function(puppies){
+
+        if(puppies.name[0] == 'P'){
+            return true;
+        }
+
+    })
+
+    doggosWithPNames.forEach(function(puppies){
+
+        var imageURL = puppies.photo;
+
+        var puppyName = puppies.name;
+
+        var image = `<img src = "${imageURL}" />`
+
+        $('#p-name').append(image, puppyName);
+
+
+    })
+
+ // etc   // 1. Figure out where each array of doggos should be displayed in the index.html
     // 2. Iterate through each array and append the doggo's name and photo to the HTML
     // 3. Use Bootstrap to style these dogs (Check out Bootstrap cards: https://getbootstrap.com/docs/4.0/components/card/)
 });
